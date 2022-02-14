@@ -9,7 +9,7 @@
 // 	stage('Intregration') {
 // 		echo "Intregration Test"
 // 	}
-}
+//}
 //DECLARA
 pipeline {
 	agent any
