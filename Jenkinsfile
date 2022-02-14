@@ -29,7 +29,8 @@ pipeline {
 				echo "Intregration Test"
 			}
 		}
-	} post {
+	} 
+	post {
 		always{
 			echo 'I am awesome. Run always'
 		}
