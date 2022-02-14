@@ -11,56 +11,43 @@
 // 	}
 //}
 //DECLARA
-// pipeline {
-// 	agent any
-// 	// agent {
-//     //     docker { image 'node:latest' }
-//     // }
-// 	stages{
-// 		stage('Build') {
-// 			steps{
-// 				sh 'java -version'
-// 				echo "Build"
-// 			}
-// 		}
-// 		stage('Test') {
-// 			steps{
-// 				echo "Test"
-// 			}
-// 		}
-// 		stage('Intregration Test') {
-// 			steps{
-// 				echo "Intregration Test"
-// 			}
-// 		}
-// 	} 
-
-// 	post {
-// 		always{
-// 			echo 'I am awesome. Run always'
-// 		}
-// 		success{
-// 			echo 'I run when you are successful'
-// 		}
-// 		failure{
-// 			echo 'I run when you are failure.'
-// 		}
-// 	}
-// }
-
-
 pipeline {
-    agent {
-        docker { 
-			image 'node:16.13.1-alpine'
-			args "-u root"
+	agent any
+	// agent {
+    //     docker { image 'node:latest' }
+    // }
+	stages{
+		stage('Build') {
+			steps{
+				echo "$PATH"
+				echo "BUILD_NUMBER - $env.BUILD_NUMBER"
+				echo "BUILD_ID - $env.BUILD_ID"
+				echo "JOB_NAME - $env.JOB_NAME"
+				echo "BUILD_TAG - $env.BUILD_TAG"
+				echo "BUILD_URL - $env.BUILD_URL"
 			}
-    }
-    stages {
-        stage('Test') {
-            steps {
-                sh 'node --version'
-            }
-        }
-    }
+		}
+		stage('Test') {
+			steps{
+				echo "Test"
+			}
+		}
+		stage('Intregration Test') {
+			steps{
+				echo "Intregration Test"
+			}
+		}
+	} 
+
+	post {
+		always{
+			echo 'I am awesome. Run always'
+		}
+		success{
+			echo 'I run when you are successful'
+		}
+		failure{
+			echo 'I run when you are failure.'
+		}
+	}
 }
