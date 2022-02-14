@@ -14,7 +14,7 @@
 pipeline {
 	//agent any
 	agent {
-        docker { image 'node:14.17.0' }
+        docker { image 'node:latest' }
     }
 	stages{
 		stage('Build') {
