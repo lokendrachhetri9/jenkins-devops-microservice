@@ -12,14 +12,14 @@
 //}
 //DECLARA
 pipeline {
-	//agent any
-	agent {
-        docker { image 'node:latest' }
-    }
+	agent any
+	// agent {
+    //     docker { image 'node:latest' }
+    // }
 	stages{
 		stage('Build') {
 			steps{
-				sh 'node --version'
+				sh 'java -version'
 				echo "Build"
 			}
 		}
