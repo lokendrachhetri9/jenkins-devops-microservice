@@ -23,7 +23,7 @@ pipeline {
 	}
 
 	stages{
-		stage('Build') {
+		stage('Checkout') {
 			steps{
 				sh 'mvn --version'
 				sh 'docker version'
@@ -35,27 +35,32 @@ pipeline {
 				echo "BUILD_URL - $env.BUILD_URL"
 			}
 		}
-		stage('Test') {
+		stage('compile') {
 			steps{
-				echo "Test"
+				sh 'mvn clean compile'
 			}
 		}
-		stage('Intregration Test') {
+		stage('Test') {
 			steps{
-				echo "Intregration Test"
+				sh 'mvn test'
+			}
+		}
+		stage('Integration Test') {
+			steps{
+				sh 'mvn failsafe.integration-test failsafe:verify'
 			}
 		}
 	} 
 
 	post {
 		always{
-			echo 'I am awesome. Run always'
+			echo 'This is auto generated regradless of the status'
 		}
 		success{
-			echo 'I run when you are successful'
+			echo 'Pipeline run successful.'
 		}
 		failure{
-			echo 'I run when you are failure.'
+			echo 'There have some errors encountred'
 		}
 	}
 }
