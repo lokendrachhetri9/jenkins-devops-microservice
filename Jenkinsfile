@@ -13,9 +13,9 @@
 //DECLARA
 pipeline {
 	agent any
-	// agent {
-    //     docker { image 'node:14.17.0' }
-    // }
+	agent {
+        docker { image 'node:14.17.0' }
+    }
 	stages{
 		stage('Build') {
 			steps{
